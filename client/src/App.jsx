@@ -11,6 +11,8 @@ import TermsPage from "./pages/TermsPage";
 import HowtoBuyPage from "./pages/HowtoBuyPage";
 import ContactPage from "./pages/ContactPage";
 import ComplainPage from "./pages/ComplainPage";
+import LogInPage from "./pages/LogInPage";
+import OTPpage from "./pages/OTPpage";
 function App() {
   return (
     <BrowserRouter>
@@ -28,6 +30,9 @@ function App() {
         <Route path="/how-to-buy" element={<HowtoBuyPage />} />
         <Route path="/contact" element={<ContactPage />} />
         <Route path="/complain" element={<ComplainPage />} />
+
+        <Route path="/login" element={<LogInPage />} />
+        <Route path="/otp" element={<OTPpage />} />
       </Routes>
     </BrowserRouter>
   );
