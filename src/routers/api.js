@@ -80,7 +80,7 @@ router.get("/CartList", AuthVerification, CartList);
 //Feature
 // router.get("/FeaturesList", AuthVerification, FeaturesList);
 router.get("/FeaturesList", FeaturesList);
-router.get("/LegalDetails/:type", AuthVerification, LegalDetails);
+router.get("/LegalDetails/:type", LegalDetails);
 
 //Invoice & Payment
 router.post("/CreateInvoice", AuthVerification, CreateInvoice);
