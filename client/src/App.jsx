@@ -13,6 +13,7 @@ import ContactPage from "./pages/ContactPage";
 import ComplainPage from "./pages/ComplainPage";
 import LogInPage from "./pages/LogInPage";
 import OTPpage from "./pages/OTPpage";
+import ProfilePage from "./pages/ProfilePage";
 function App() {
   return (
     <BrowserRouter>
@@ -33,6 +34,8 @@ function App() {
 
         <Route path="/login" element={<LogInPage />} />
         <Route path="/otp" element={<OTPpage />} />
+
+        <Route path="/profile" element={<ProfilePage />} />
       </Routes>
     </BrowserRouter>
   );

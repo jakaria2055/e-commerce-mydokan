@@ -3,11 +3,14 @@ import logo from "../../assets/images/plainb-logo.svg";
 import ProductStore from "../../store/ProductStore";
 import UserStore from "../../store/UserStore";
 import UserSubmitButton from "../user/UserSubmitButton";
+import CartStore from "../../store/CartStore";
+import { useEffect } from "react";
 
 function NavBar() {
   const navigate = useNavigate();
   const { SearchKeyword, SetSearchKeyword } = ProductStore();
   const { isLogin, UserLogoutRequest } = UserStore();
+  const {CartCount,CartListRequest} = CartStore();
 
   const onLogout = async () => {
     await UserLogoutRequest();
@@ -15,6 +18,14 @@ function NavBar() {
     localStorage.clear();
     navigate("/");
   };
+
+  useEffect(()=>{
+    (async()=>{
+      if(isLogin()){
+        await CartListRequest();
+      }
+    })()
+  },[])
 
   return (
     <>
@@ -105,23 +116,25 @@ function NavBar() {
                 </svg>
               </Link>
             </div>
-            <Link
-              to="/cart"
-              type="button"
-              className="btn ms-2 btn-light position-relative"
-            >
-              <i className="bi text-dark bi-bag"></i>
-            </Link>
-            <Link
-              to="/wish"
-              type="button"
-              className="btn ms-2 btn-light d-flex"
-            >
-              <i className="bi text-dark bi-heart"></i>
-            </Link>
 
             {isLogin() ? (
               <>
+                <Link
+                  to="/cart"
+                  type="button"
+                  className="btn ms-2 btn-light position-relative"
+                >
+                  <i className="bi text-dark bi-bag"></i>
+                  <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-success">{CartCount}</span>
+                  <span className="visually-hidden">unread message</span>
+                </Link>
+                <Link
+                  to="/wish"
+                  type="button"
+                  className="btn ms-2 btn-light d-flex"
+                >
+                  <i className="bi text-dark bi-heart"></i>
+                </Link>
                 <Link
                   type="button"
                   className="btn ms-3 btn-success d-flex"
