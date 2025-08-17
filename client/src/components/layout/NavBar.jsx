@@ -5,12 +5,14 @@ import UserStore from "../../store/UserStore";
 import UserSubmitButton from "../user/UserSubmitButton";
 import CartStore from "../../store/CartStore";
 import { useEffect } from "react";
+import WishStore from "../../store/WishStore";
 
 function NavBar() {
   const navigate = useNavigate();
   const { SearchKeyword, SetSearchKeyword } = ProductStore();
   const { isLogin, UserLogoutRequest } = UserStore();
-  const {CartCount,CartListRequest} = CartStore();
+  const { CartCount, CartListRequest } = CartStore();
+  const { WishCount, WishListRequest } = WishStore();
 
   const onLogout = async () => {
     await UserLogoutRequest();
@@ -19,13 +21,14 @@ function NavBar() {
     navigate("/");
   };
 
-  useEffect(()=>{
-    (async()=>{
-      if(isLogin()){
+  useEffect(() => {
+    (async () => {
+      if (isLogin()) {
         await CartListRequest();
+        await WishListRequest();
       }
-    })()
-  },[])
+    })();
+  }, []);
 
   return (
     <>
@@ -76,11 +79,38 @@ function NavBar() {
           </button>
           <div className="collapse navbar-collapse" id="nav06">
             <ul className="navbar-nav mt-3 mt-lg-0 mb-3 mb-lg-0 ms-lg-3">
-              <li className="nav-item me-4">
-                <Link className="nav-link" to="/">
-                  Home
+              <span className="nav-item me-4">
+                <Link className="btn ms-2 btn-light position-relative" to="/">
+                  <i className="bi bi-house"></i> Home
                 </Link>
-              </li>
+                <Link
+                  to="/cart"
+                  type="button"
+                  className="btn ms-2 btn-light position-relative"
+                >
+                  <i className="bi text-dark bi-bag"></i> Cart
+                  <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-success">
+                    {CartCount}
+                  </span>
+                </Link>
+                <Link
+                  to="/wish"
+                  type="button"
+                  className="btn ms-4 btn-light position-relative"
+                >
+                  <i className="bi text-dark bi-heart"></i> Wish
+                  <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-warning">
+                    {WishCount}
+                  </span>
+                </Link>
+                <Link
+                  to="/orders"
+                  type="button"
+                  className="btn ms-4 btn-light position-relative"
+                >
+                  <i className="bi text-dark  bi-truck"></i> Order
+                </Link>
+              </span>
             </ul>
           </div>
           <div className="d-lg-flex">
@@ -119,22 +149,6 @@ function NavBar() {
 
             {isLogin() ? (
               <>
-                <Link
-                  to="/cart"
-                  type="button"
-                  className="btn ms-2 btn-light position-relative"
-                >
-                  <i className="bi text-dark bi-bag"></i>
-                  <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-success">{CartCount}</span>
-                  <span className="visually-hidden">unread message</span>
-                </Link>
-                <Link
-                  to="/wish"
-                  type="button"
-                  className="btn ms-2 btn-light d-flex"
-                >
-                  <i className="bi text-dark bi-heart"></i>
-                </Link>
                 <Link
                   type="button"
                   className="btn ms-3 btn-success d-flex"

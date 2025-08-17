@@ -96,7 +96,7 @@ export const CreateInvoiceService = async (req) => {
 
   const form = new FormData();
   form.append("store_id", PaymentSettings[0].store_id);
-  form.append("store_passwd", PaymentSettings[0].store_password);
+  form.append("store_passwd", PaymentSettings[0].store_passwd);
   form.append("total_amount", payable.toString());
   form.append("currency", PaymentSettings[0].currency);
   form.append("tran_id", tran_id);

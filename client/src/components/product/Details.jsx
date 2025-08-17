@@ -5,31 +5,43 @@ import ProductDetailsSkeleton from "../../skeleton/ProductDetailsSkeleton";
 import { useState } from "react";
 import parse from "html-react-parser";
 import Reviews from "./Reviews";
-import CardSubmitButton from "../cart/CartSubmitButton"
+import CardSubmitButton from "../cart/CartSubmitButton";
 import CartStore from "../../store/CartStore";
 import toast from "react-hot-toast";
+import WishStore from "../../store/WishStore";
+import WishSubmitButton from "../wish/WishSubmitButton";
 
 function Details() {
   const { Details } = ProductStore();
-  const {CartSaveRequest,CartListRequest,CartForm, CartFromChange} = CartStore();
+  const { CartSaveRequest, CartListRequest, CartForm, CartFromChange } =
+    CartStore();
+  const { WishSaveRequest, WishListRequest } = WishStore();
   const [quantity, SetQuantity] = useState(1);
 
   const incrementQuantity = () => {
-    SetQuantity(quantity => quantity + 1);
+    SetQuantity((quantity) => quantity + 1);
   };
   const decrementQuantity = () => {
     if (quantity > 1) {
-      SetQuantity(quantity => quantity - 1);
+      SetQuantity((quantity) => quantity - 1);
     }
   };
 
-  const AddCart = async (productID) =>{
+  const AddCart = async (productID) => {
     let res = await CartSaveRequest(CartForm, productID, quantity);
-    if(res){
+    if (res) {
       toast.success("Item Added into card");
       await CartListRequest();
     }
-  }
+  };
+
+  const AddWish = async (productID) => {
+    let res = await WishSaveRequest(productID);
+    if (res) {
+      toast.success("Item Added into Wishlist");
+      await WishListRequest();
+    }
+  };
 
   if (Details === null) {
     return <ProductDetailsSkeleton />;
@@ -66,7 +78,13 @@ function Details() {
               <div className="row">
                 <div className="col-4 p-2">
                   <label className="bodySmal">Size</label>
-                  <select value={CartForm.size} onChange={(e)=>{CartFromChange('size',e.target.value)}} className="form-control my-2 form-select">
+                  <select
+                    value={CartForm.size}
+                    onChange={(e) => {
+                      CartFromChange("size", e.target.value);
+                    }}
+                    className="form-control my-2 form-select"
+                  >
                     <option value="">Size</option>
                     {Details[0]["details"]["size"].split(",").map((item, i) => {
                       return <option value={item}>{item}</option>;
@@ -75,7 +93,13 @@ function Details() {
                 </div>
                 <div className="col-4 p-2">
                   <label className="bodySmal">Color</label>
-                  <select value={CartForm.color} onChange={(e)=>{CartFromChange('color',e.target.value)}} className="form-control my-2 form-select">
+                  <select
+                    value={CartForm.color}
+                    onChange={(e) => {
+                      CartFromChange("color", e.target.value);
+                    }}
+                    className="form-control my-2 form-select"
+                  >
                     <option value="">Color</option>
                     {Details[0]["details"]["color"]
                       .split(",")
@@ -108,10 +132,22 @@ function Details() {
                   </div>
                 </div>
                 <div className="col-4 p-2">
-                  <CardSubmitButton onClick={async ()=> {await AddCart(Details[0]['_id'])}} className="btn w-100 btn-success" text="Add to Cart"/>
+                  <CardSubmitButton
+                    onClick={async () => {
+                      await AddCart(Details[0]["_id"]);
+                    }}
+                    className="btn w-100 btn-success"
+                    text="Add to Cart"
+                  />
                 </div>
                 <div className="col-4 p-2">
-                  <button className="btn w-100 btn-success">Add to Wish</button>
+                  <WishSubmitButton
+                    onClick={async () => {
+                      await AddWish(Details[0]["_id"]);
+                    }}
+                    className="btn w-100 btn-success"
+                    text="Add to Wish"
+                  />
                 </div>
               </div>
             </div>

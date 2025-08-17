@@ -1,10 +1,15 @@
-import  { useEffect } from "react";
+import { useEffect } from "react";
 import toast from "react-hot-toast";
 import UserStore from "../../store/UserStore";
 import ProfileSkeleton from "../../skeleton/ProfileSkeleton";
 
 function ProfileForm() {
-    let {
+
+
+
+
+  
+  let {
     ProfileForm,
     ProfileFormChange,
     ProfileDetails,
@@ -18,13 +23,13 @@ function ProfileForm() {
     })();
   }, []);
 
-    const save = async () => {
-      let res = await ProfileSaveRequest(ProfileForm);
-      if(res){
-        toast.success("Profile Updated.")
-        await ProfileDetailsRequest();
-      }
+  const save = async () => {
+    let res = await ProfileSaveRequest(ProfileForm);
+    if (res) {
+      toast.success("Profile Updated.");
+      await ProfileDetailsRequest();
     }
+  };
 
   if (ProfileDetails === null) {
     return <ProfileSkeleton />;
@@ -209,7 +214,9 @@ function ProfileForm() {
 
           <div className="row mt-4">
             <div className="col-md-3 p-2">
-              <button onClick={save} className="btn btn-success">Save</button>
+              <button onClick={save} className="btn btn-success">
+                Save
+              </button>
             </div>
           </div>
         </div>
@@ -218,4 +225,4 @@ function ProfileForm() {
   }
 }
 
-export default ProfileForm
+export default ProfileForm;

@@ -1,4 +1,12 @@
-import { CreateInvoiceService, InvoiceListService, InvoiceProductListService, PaymentCancelService, PaymentFailService, PaymentIPNService, PaymentSuccessService } from "../services/InvoiceServices.js";
+import {
+  CreateInvoiceService,
+  InvoiceListService,
+  InvoiceProductListService,
+  PaymentCancelService,
+  PaymentFailService,
+  PaymentIPNService,
+  PaymentSuccessService,
+} from "../services/InvoiceServices.js";
 
 export const CreateInvoice = async (req, res) => {
   const result = await CreateInvoiceService(req);
@@ -7,7 +15,7 @@ export const CreateInvoice = async (req, res) => {
 
 export const PaymentSuccess = async (req, res) => {
   await PaymentSuccessService(req);
-  return res.redirect("/orders");
+  return res.redirect("http://localhost:5173/orders");
 };
 
 export const PaymentFail = async (req, res) => {

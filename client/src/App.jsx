@@ -14,6 +14,9 @@ import ComplainPage from "./pages/ComplainPage";
 import LogInPage from "./pages/LogInPage";
 import OTPpage from "./pages/OTPpage";
 import ProfilePage from "./pages/ProfilePage";
+import WishPage from "./pages/WishPage";
+import CartPage from "./pages/CartPage";
+import OrderPage from "./pages/OrderPage";
 function App() {
   return (
     <BrowserRouter>
@@ -36,6 +39,10 @@ function App() {
         <Route path="/otp" element={<OTPpage />} />
 
         <Route path="/profile" element={<ProfilePage />} />
+        <Route path="/wish" element={<WishPage />} />
+        <Route path="/cart" element={<CartPage />} />
+
+        <Route path="/orders" element={<OrderPage />} />
       </Routes>
     </BrowserRouter>
   );
