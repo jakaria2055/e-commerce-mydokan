@@ -1,10 +1,24 @@
-import React, { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import CartStore from "../../store/CartStore";
+import {Modal} from "react-bootstrap";
 import CartSkeleton from "../../skeleton/CertSkeleton";
 import NoData from "../layout/NoData";
+import ReviewStore from "../../store/ReviewStore";
+import toast from "react-hot-toast";
+import ValidationHelper from "../../utility/ValidationHelper";
+import ReviewSubmitButton from "./ReviewSubmitButton";
 
 function InvoiceDetails() {
+  const [show, setShow ]  = useState(false);
+  const handleClose = () => setShow(false);
+
+  let { ReviewFormData, ReviewFormOnChange, ReviewSaveRequest } = ReviewStore();
+  const ReviewModal = (id) => {
+    setShow(true);
+    ReviewFormOnChange("productID", id);
+  };
+
   const { id } = useParams();
   let { InvoiceDetails, InvoiceDetailsRequest } = CartStore();
 
@@ -13,6 +27,18 @@ function InvoiceDetails() {
       await InvoiceDetailsRequest(id);
     })();
   }, [id]);
+
+  const submitReview = async () => {
+    if (ValidationHelper.IsEmpty(ReviewFormData.des)) {
+      toast.error("Review Required");
+    } else {
+      let res = await ReviewSaveRequest(ReviewFormData);
+      res
+        ? toast.success("New Review Created")
+        : toast.error("Something went wrong!");
+      setShow(false);
+    }
+  };
 
   if (InvoiceDetails === null) {
     return <CartSkeleton />;
@@ -50,7 +76,7 @@ function InvoiceDetails() {
                         </span>
                       </div>
                       <button
-                        // onClick={() => ReviewModal(item["productID"])}
+                        onClick={() => ReviewModal(item["productID"])}
                         className="btn btn-success"
                       >
                         Create Review
@@ -62,7 +88,7 @@ function InvoiceDetails() {
             </div>
           </div>
         </div>
-        {/* <Modal show={show} onHide={handleClose}>
+        <Modal show={show} onHide={handleClose}>
           <Modal.Header closeButton>
             <h6>Create Review</h6>
           </Modal.Header>
@@ -105,7 +131,7 @@ function InvoiceDetails() {
               onClick={submitReview}
             />
           </Modal.Footer>
-        </Modal> */}
+        </Modal>
       </div>
     );
   }
