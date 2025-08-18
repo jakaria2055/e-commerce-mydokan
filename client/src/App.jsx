@@ -17,6 +17,7 @@ import ProfilePage from "./pages/ProfilePage";
 import WishPage from "./pages/WishPage";
 import CartPage from "./pages/CartPage";
 import OrderPage from "./pages/OrderPage";
+import InvoicePage from "./pages/InvoicePage";
 function App() {
   return (
     <BrowserRouter>
@@ -43,6 +44,8 @@ function App() {
         <Route path="/cart" element={<CartPage />} />
 
         <Route path="/orders" element={<OrderPage />} />
+        <Route path="/invoice/:id" element={<InvoicePage />} />
+        
       </Routes>
     </BrowserRouter>
   );
