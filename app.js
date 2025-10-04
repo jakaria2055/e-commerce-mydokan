@@ -3,10 +3,14 @@ import cookieParser from "cookie-parser";
 import express from "express";
 import cors from "cors";
 import helmet from "helmet";
-
 import hpp from "hpp";
 import rateLimit from "express-rate-limit";
 import router from "./src/routers/api.js";
+
+import { fileURLToPath } from "url";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const app = express();
 
