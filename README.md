@@ -247,50 +247,60 @@ SMTP_PORT=
 PORT=8080
 
 <h6>🔗 API Endpoints</h6>
-| Method | Endpoint                     | Description                |
-| ------ | ---------------------------- | -------------------------- |
-| GET    | `/productBrandList`          | Get all brands             |
-| POST   | `/CreateBrandList`           | Create a new brand         |
-| GET    | `/ProductCategoryList`       | Get all categories         |
-| GET    | `/ProductDetails/:ProductID` | Get product details        |
-| POST   | `/create-review`             | Add review (Auth required) |
-| GET    | `/review-list/:ProductID`    | Get product reviews        |
+| Method | Endpoint                             | Description                   |
+| ------ | ------------------------------------ | ----------------------------- |
+| GET    | `/productBrandList`                  | Get all product brands        |
+| POST   | `/CreateBrandList`                   | Create new brand              |
+| GET    | `/ProductCategoryList`               | Get all product categories    |
+| GET    | `/ProductSliderList`                 | Get product slider list       |
+| GET    | `/ProductListByBrand/:brandID`       | Get products by brand         |
+| GET    | `/ProductListByCategory/:categoryID` | Get products by category      |
+| GET    | `/ProductListBySmilier/:categoryID`  | Get similar products          |
+| GET    | `/ProductListByKeyword/:Keyword`     | Search products by keyword    |
+| GET    | `/ProductListByRemark/:Remark`       | Get products by remark        |
+| GET    | `/ProductDetails/:ProductID`         | Get product details           |
+| POST   | `/create-review`                     | Add review (Auth required)    |
+| GET    | `/review-list/:ProductID`            | Get all reviews for a product |
+| POST   | `/list-by-filter`                    | Filter product list           |
 
-<h6>🔗 API Endpoints</h6>
 
 <h6>👤 User Routes</h6>
-| Method | Endpoint                   | Description           |
-| ------ | -------------------------- | --------------------- |
-| GET    | `/UserOTP/:email`          | Send OTP              |
-| GET    | `/VerifyLogin/:email/:otp` | Verify OTP login      |
-| GET    | `/UserLogout`              | Logout user           |
-| POST   | `/CreateProfile`           | Create user profile   |
-| GET    | `/ReadProfile`             | Read profile (Auth)   |
-| PUT    | `/UpdateProfile`           | Update profile (Auth) |
+| Method | Endpoint                   | Description                |
+| ------ | -------------------------- | -------------------------- |
+| GET    | `/UserOTP/:email`          | Send OTP to user email     |
+| GET    | `/VerifyLogin/:email/:otp` | Verify login with OTP      |
+| GET    | `/UserLogout`              | Logout user                |
+| POST   | `/CreateProfile`           | Create user profile        |
+| GET    | `/ReadProfile`             | Get user profile (Auth)    |
+| PUT    | `/UpdateProfile`           | Update user profile (Auth) |
+
 
 <h6>❤️ Wishlist Routes</h6>
-| Method | Endpoint          | Description          |
-| ------ | ----------------- | -------------------- |
-| POST   | `/SaveWishList`   | Add to wishlist      |
-| DELETE | `/RemoveWishList` | Remove from wishlist |
-| GET    | `/WishList`       | Get wishlist         |
+| Method | Endpoint          | Description                  |
+| ------ | ----------------- | ---------------------------- |
+| POST   | `/SaveWishList`   | Add product to wishlist      |
+| DELETE | `/RemoveWishList` | Remove product from wishlist |
+| GET    | `/WishList`       | Get wishlist items           |
 
 <h6>🛒 Cart Routes</h6>
-| Method | Endpoint                  | Description      |
-| ------ | ------------------------- | ---------------- |
-| POST   | `/SaveCartList`           | Add to cart      |
-| POST   | `/UpdateCartList/:cartID` | Update cart item |
-| POST   | `/RemoveCartList`         | Remove from cart |
-| GET    | `/CartList`               | Get cart list    |
+| Method | Endpoint                  | Description              |
+| ------ | ------------------------- | ------------------------ |
+| POST   | `/SaveCartList`           | Add product to cart      |
+| POST   | `/UpdateCartList/:cartID` | Update cart item         |
+| POST   | `/RemoveCartList`         | Remove product from cart |
+| GET    | `/CartList`               | Get all cart items       |
+
 
 <h6>💳 Invoice & Payment Routes</h6>
-| Method | Endpoint                          | Description             |
-| ------ | --------------------------------- | ----------------------- |
-| GET    | `/CreateInvoice`                  | Create new invoice      |
-| GET    | `/InvoiceList`                    | Get user invoices       |
-| GET    | `/InvoiceProductList/:invoice_id` | Get products in invoice |
-| POST   | `/PaymentSuccess/:trxID`          | Handle payment success  |
-| POST   | `/PaymentCancel/:trxID`           | Handle payment cancel   |
-| POST   | `/PaymentFail/:trxID`             | Handle payment fail     |
-| POST   | `/PaymentIPN/:trxID`              | Payment IPN webhook     |
+| Method | Endpoint                          | Description                 |
+| ------ | --------------------------------- | --------------------------- |
+| GET    | `/CreateInvoice`                  | Create new invoice          |
+| GET    | `/InvoiceList`                    | Get list of invoices        |
+| GET    | `/InvoiceProductList/:invoice_id` | Get products for an invoice |
+| POST   | `/PaymentSuccess/:trxID`          | Handle payment success      |
+| POST   | `/PaymentCancel/:trxID`           | Handle payment cancel       |
+| POST   | `/PaymentFail/:trxID`             | Handle payment failure      |
+| POST   | `/PaymentIPN/:trxID`              | Payment IPN callback        |
+
+
 
