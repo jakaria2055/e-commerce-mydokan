@@ -1,4 +1,4 @@
-# 🛍️ M-18 E-Commerce Backend API
+# 🛍️ E-Commerce mydokan
 
 This is a **powerful and modular E-Commerce REST API** built with **Node.js**, **Express**, and **MongoDB (Mongoose)**.  
 It provides a complete backend solution for managing products, users, orders, authentication, payments, reviews, carts, wishlists, and more — designed for scalability and security.
@@ -293,3 +293,4 @@ PORT=8080
 | POST   | `/PaymentCancel/:trxID`           | Handle payment cancel   |
 | POST   | `/PaymentFail/:trxID`             | Handle payment fail     |
 | POST   | `/PaymentIPN/:trxID`              | Payment IPN webhook     |
+
