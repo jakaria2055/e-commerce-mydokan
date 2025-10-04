@@ -246,6 +246,8 @@ SMTP_HOST=
 SMTP_PORT=
 PORT=8080
 
+
+---
 <h6>🔗 API Endpoints</h6>
 | Method | Endpoint                             | Description                   |
 | ------ | ------------------------------------ | ----------------------------- |
@@ -262,8 +264,10 @@ PORT=8080
 | POST   | `/create-review`                     | Add review (Auth required)    |
 | GET    | `/review-list/:ProductID`            | Get all reviews for a product |
 | POST   | `/list-by-filter`                    | Filter product list           |
+---
 
 
+---
 <h6>👤 User Routes</h6>
 | Method | Endpoint                   | Description                |
 | ------ | -------------------------- | -------------------------- |
@@ -273,15 +277,19 @@ PORT=8080
 | POST   | `/CreateProfile`           | Create user profile        |
 | GET    | `/ReadProfile`             | Get user profile (Auth)    |
 | PUT    | `/UpdateProfile`           | Update user profile (Auth) |
+---
 
 
+---
 <h6>❤️ Wishlist Routes</h6>
 | Method | Endpoint          | Description                  |
 | ------ | ----------------- | ---------------------------- |
 | POST   | `/SaveWishList`   | Add product to wishlist      |
 | DELETE | `/RemoveWishList` | Remove product from wishlist |
 | GET    | `/WishList`       | Get wishlist items           |
+---
 
+---
 <h6>🛒 Cart Routes</h6>
 | Method | Endpoint                  | Description              |
 | ------ | ------------------------- | ------------------------ |
@@ -289,8 +297,10 @@ PORT=8080
 | POST   | `/UpdateCartList/:cartID` | Update cart item         |
 | POST   | `/RemoveCartList`         | Remove product from cart |
 | GET    | `/CartList`               | Get all cart items       |
+---
 
 
+---
 <h6>💳 Invoice & Payment Routes</h6>
 | Method | Endpoint                          | Description                 |
 | ------ | --------------------------------- | --------------------------- |
@@ -301,6 +311,7 @@ PORT=8080
 | POST   | `/PaymentCancel/:trxID`           | Handle payment cancel       |
 | POST   | `/PaymentFail/:trxID`             | Handle payment failure      |
 | POST   | `/PaymentIPN/:trxID`              | Payment IPN callback        |
+---
 
 
 
