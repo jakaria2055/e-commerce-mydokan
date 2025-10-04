@@ -35,6 +35,8 @@ app.use(limiter);
 
 app.set("etag", false);
 
+
+app.use("/api/status", (req, res) => res.send("Server is Running fine..."));
 app.use("/api/v1", router);
 
 app.use(express.static("client/dist"));
