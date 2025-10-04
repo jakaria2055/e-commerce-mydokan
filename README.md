@@ -247,71 +247,87 @@ SMTP_PORT=
 PORT=8080
 
 
----
 <h6>🔗 API Endpoints</h6>
-| Method | Endpoint                             | Description                   |
-| ------ | ------------------------------------ | ----------------------------- |
-| GET    | `/productBrandList`                  | Get all product brands        |
-| POST   | `/CreateBrandList`                   | Create new brand              |
-| GET    | `/ProductCategoryList`               | Get all product categories    |
-| GET    | `/ProductSliderList`                 | Get product slider list       |
-| GET    | `/ProductListByBrand/:brandID`       | Get products by brand         |
-| GET    | `/ProductListByCategory/:categoryID` | Get products by category      |
-| GET    | `/ProductListBySmilier/:categoryID`  | Get similar products          |
-| GET    | `/ProductListByKeyword/:Keyword`     | Search products by keyword    |
-| GET    | `/ProductListByRemark/:Remark`       | Get products by remark        |
-| GET    | `/ProductDetails/:ProductID`         | Get product details           |
-| POST   | `/create-review`                     | Add review (Auth required)    |
-| GET    | `/review-list/:ProductID`            | Get all reviews for a product |
-| POST   | `/list-by-filter`                    | Filter product list           |
----
+GET /productBrandList — Get all product brands
+
+POST /CreateBrandList — Create a new brand
+
+GET /ProductCategoryList — Get all product categories
+
+GET /ProductSliderList — Get product slider list
+
+GET /ProductListByBrand/:brandID — Get products by brand ID
+
+GET /ProductListByCategory/:categoryID — Get products by category ID
+
+GET /ProductListBySmilier/:categoryID — Get similar products by category
+
+GET /ProductListByKeyword/:Keyword — Search products by keyword
+
+GET /ProductListByRemark/:Remark — Get products by remark type
+
+GET /ProductDetails/:ProductID — Get detailed product info
+
+POST /create-review — Create a new product review (Auth required)
+
+GET /review-list/:ProductID — Get product review list
+
+POST /list-by-filter — Get filtered product list
 
 
----
+
 <h6>👤 User Routes</h6>
-| Method | Endpoint                   | Description                |
-| ------ | -------------------------- | -------------------------- |
-| GET    | `/UserOTP/:email`          | Send OTP to user email     |
-| GET    | `/VerifyLogin/:email/:otp` | Verify login with OTP      |
-| GET    | `/UserLogout`              | Logout user                |
-| POST   | `/CreateProfile`           | Create user profile        |
-| GET    | `/ReadProfile`             | Get user profile (Auth)    |
-| PUT    | `/UpdateProfile`           | Update user profile (Auth) |
----
+GET /UserOTP/:email — Send OTP to user email
+
+GET /VerifyLogin/:email/:otp — Verify OTP and log in user
+
+GET /UserLogout — Logout user (Auth required)
+
+POST /CreateProfile — Create user profile (Auth required)
+
+GET /ReadProfile — Read user profile (Auth required)
+
+PUT /UpdateProfile — Update user profile (Auth required)
 
 
----
+
 <h6>❤️ Wishlist Routes</h6>
-| Method | Endpoint          | Description                  |
-| ------ | ----------------- | ---------------------------- |
-| POST   | `/SaveWishList`   | Add product to wishlist      |
-| DELETE | `/RemoveWishList` | Remove product from wishlist |
-| GET    | `/WishList`       | Get wishlist items           |
----
+POST /SaveWishList — Add product to wishlist (Auth required)
 
----
+DELETE /RemoveWishList — Remove product from wishlist (Auth required)
+
+GET /WishList — Get user wishlist (Auth required)
+
+
 <h6>🛒 Cart Routes</h6>
-| Method | Endpoint                  | Description              |
-| ------ | ------------------------- | ------------------------ |
-| POST   | `/SaveCartList`           | Add product to cart      |
-| POST   | `/UpdateCartList/:cartID` | Update cart item         |
-| POST   | `/RemoveCartList`         | Remove product from cart |
-| GET    | `/CartList`               | Get all cart items       |
----
+POST /SaveCartList — Add product to cart (Auth required)
+
+POST /UpdateCartList/:cartID — Update cart item (Auth required)
+
+POST /RemoveCartList — Remove item from cart (Auth required)
+
+GET /CartList — Get all cart items (Auth required)
 
 
----
 <h6>💳 Invoice & Payment Routes</h6>
-| Method | Endpoint                          | Description                 |
-| ------ | --------------------------------- | --------------------------- |
-| GET    | `/CreateInvoice`                  | Create new invoice          |
-| GET    | `/InvoiceList`                    | Get list of invoices        |
-| GET    | `/InvoiceProductList/:invoice_id` | Get products for an invoice |
-| POST   | `/PaymentSuccess/:trxID`          | Handle payment success      |
-| POST   | `/PaymentCancel/:trxID`           | Handle payment cancel       |
-| POST   | `/PaymentFail/:trxID`             | Handle payment failure      |
-| POST   | `/PaymentIPN/:trxID`              | Payment IPN callback        |
----
+GET /CreateInvoice — Create new invoice (Auth required)
 
+GET /InvoiceList — Get all invoices (Auth required)
+
+GET /InvoiceProductList/:invoice_id — Get products under an invoice (Auth required)
+
+POST /PaymentSuccess/:trxID — Handle payment success
+
+POST /PaymentCancel/:trxID — Handle payment cancellation
+
+POST /PaymentFail/:trxID — Handle failed payment
+
+POST /PaymentIPN/:trxID — Handle payment IPN callback
+
+
+<h6>⚙️ Feature & Legal Routes</h6>
+GET /FeaturesList — Get all feature list
+
+GET /LegalDetails/:type — Get legal page details by type
 
 
